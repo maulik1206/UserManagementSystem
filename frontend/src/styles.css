@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css';
+
+.content-container {
+    position: relative; /* Position relative to position the loader overlay absolutely */
+  }
+  
+  .loader-overlay {
+    position: absolute; /* Position the loader overlay absolutely */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex; /* Center the spinner */
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.7); /* Optional: Add a translucent background */
+    z-index: 1000; /* Ensure the overlay is on top */
+  }
+  
+  mat-spinner {
+    /* Optional: You can size the spinner if needed */
+    width: 50px;
+    height: 50px;
+  }
+  
+
+  ::ng-deep .mat-snack-bar-container {
+    background-color: #4caf50; /* Green background for success */
+    color: white; /* White text */
+  }

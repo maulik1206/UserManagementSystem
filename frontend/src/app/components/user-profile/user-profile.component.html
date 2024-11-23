@@ -1,0 +1,46 @@
+<div class="content-container">
+  <div *ngIf="loading" class="loader-overlay">
+    <mat-spinner></mat-spinner>
+  </div>
+  <mat-card class="profile-card">
+    <h2>User Profile</h2>  
+    <div *ngIf="!isEditing">
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <button mat-raised-button color="primary" (click)="toggleEdit()">Edit</button>
+      &nbsp;&nbsp;
+      <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+    </div>
+  
+    <div *ngIf="isEditing">
+      <form [formGroup]="profileForm" (ngSubmit)="updateProfile()" class="update-form">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" required />
+          <mat-error *ngIf="profileForm.get('username')?.hasError('required')">
+            Username is required
+          </mat-error>
+          <mat-error *ngIf="profileForm.get('username')?.hasError('minlength')">
+            Username must be at least 3 characters
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" required />
+          <mat-error *ngIf="profileForm.get('email')?.hasError('required')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="profileForm.get('email')?.hasError('email')">
+            Please enter a valid email
+          </mat-error>
+        </mat-form-field>
+  
+        <button mat-raised-button color="primary" type="submit">Update</button>
+        <button mat-button (click)="toggleEdit()">Cancel</button>
+
+      </form>
+    </div>
+  </mat-card>
+  
+</div>
